@@ -1,0 +1,19 @@
+body {
+    text-align: center; /* Centrar todo el texto */
+    font-weight: bold; /* Negrita en todo el texto */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 40px;
+}
+form {
+    display: inline-block; /* Para que el formulario quede centrado */
+    text-align: left; /* Y que los labels e inputs queden alineados a la izquierda dentro del formulario */
+    font-weight: normal;
+}
+input[type="submit"] {
+    font-weight: bold;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+p {
+    font-weight: bold;
+}
