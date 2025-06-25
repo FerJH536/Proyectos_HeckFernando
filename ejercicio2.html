@@ -1,22 +1,21 @@
-<html>
-    <head>
-        <link rel="stylesheet" href="estilos.css">
-        <title>
-            Ejercicio 2
-        </title>
-    </head>
-    <body bgcolor="Lightgreen" ><font size="+1">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="form-container">
+        <h1>Ingresa los Siguientes Datos</h1>
         <form action="ejercicio2.php" method="post">
-            <p>
-                Tu Nombre:
-            <input type="text" size="25" name="nombre">
-            <br>
-            <p>
-                Ano de Nacimiento:
-            <input type="number" size="10" name="year">
-            <br/><br/>
-            <input type="submit" value="submit">
+            <label for="nombre">Tu Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Escribe tu nombre">
+
+            <label for="year">Año de Nacimiento:</label>
+            <input type="number" id="year" name="year" placeholder="Ej: 1995">
+
+            <button type="submit">Enviar</button>
         </form>
-    </font>
-    </body>
+    </div>
+</body>
 </html>
