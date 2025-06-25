@@ -1,7 +1,7 @@
-/* Estilo base general */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #a8edea, #fed6e3);
+    background: linear-gradient(to right, #1e1e2f, #2c2c3e);
+    color: #e0e0e0;
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,10 +12,10 @@ body {
 
 /* Contenedor del formulario */
 .form-container {
-    background-color: #ffffffcc;
+    background-color: #2a2a40;
     padding: 30px 40px;
     border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
     width: 100%;
     max-width: 400px;
     text-align: center;
@@ -25,24 +25,27 @@ body {
 .form-container h1 {
     margin-bottom: 20px;
     font-size: 24px;
-    color: #333;
+    color: #f0f0f0;
 }
 
-/* Campos del formulario */
+/* Etiquetas */
 label {
     display: block;
     margin-top: 15px;
     text-align: left;
     font-weight: 500;
-    color: #444;
+    color: #cccccc;
 }
 
+/* Inputs */
 input[type="text"],
 input[type="number"] {
     width: 100%;
     padding: 10px;
     margin-top: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #444;
+    background-color: #1f1f2e;
+    color: #ffffff;
     border-radius: 6px;
     font-size: 1rem;
 }
@@ -51,7 +54,7 @@ input[type="number"] {
 button {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #5e60ce;
+    background-color: #4e89ff;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -61,7 +64,7 @@ button {
 }
 
 button:hover {
-    background-color: #4ea8de;
+    background-color: #3a6dd8;
 }
 
 /* Responsive */
