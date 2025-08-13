@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<body>
+    <link rel="stylesheet" href="estiloarray.css">
+</body>
+
 <?php
 
 // Función para calcular el promedio de un estudiante
