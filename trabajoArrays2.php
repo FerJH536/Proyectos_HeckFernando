@@ -45,6 +45,7 @@ foreach ($estudiantes as &$estudiante) { // Added & to modify the original array
         $estudianteMejorPromedio = $estudiante;
     }
 }
+unset($estudiante);
 
 // Mostrar reporte completo
 echo "<h1>Reporte de Estudiantes</h1>";
