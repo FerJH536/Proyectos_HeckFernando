@@ -5,6 +5,7 @@ echo "<table border='1'>";
 echo "<thead><tr><th>Nombre</th><th>Edad</th><th>Carrera</th><th>Notas</th><th>Promedio</th></tr></thead>";
 echo "<tbody>";
 foreach ($estudiantes as $estudiante) {
+    $estudiante['promedio'] = calcularPromedio($estudiante['notas']);
     echo "<tr>";
     echo "<td>" . $estudiante['nombre'] . "</td>";
     echo "<td>" . $estudiante['edad'] . "</td>";
@@ -16,7 +17,7 @@ foreach ($estudiantes as $estudiante) {
 echo "</tbody></table>";
 
 if ($estudianteMejorPromedio) {
-    echo "<p>El estudiante con mejor promedio es: " . $estudianteMejorPromedio['nombre'] . " con un promedio de " . number_format($mejorPromedio, 2) . "</p>";
+    echo "<p>El estudiante con mejor promedio es: " . $estudianteMejorPromedio['nombre'] . " con un promedio de " . number_format($estudianteMejorPromedio['promedio'], 2) . "</p>";
 } else {
     echo "<p>No hay estudiantes para mostrar.</p>";
 }

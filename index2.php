@@ -11,18 +11,8 @@
 require_once 'funciones.php';
 require_once 'datos.php';
 
-// Calcular promedios y encontrar al estudiante con mejor promedio
-$mejorPromedio = 0;
 $estudianteMejorPromedio = null;
-
-foreach ($estudiantes as &$estudiante) {
-    $estudiante['promedio'] = calcularPromedio($estudiante['notas']);
-    if ($estudiante['promedio'] > $mejorPromedio) {
-        $mejorPromedio = $estudiante['promedio'];
-        $estudianteMejorPromedio = $estudiante;
-    }
-}
-unset($estudiante);
+$estudianteMejorPromedio=mejorPromedio($estudiantes);
 
 require 'formato.php';
 ?>
