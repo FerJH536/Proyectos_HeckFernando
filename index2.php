@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="estiloarray.css">
     <meta charset="UTF-8">
-    <title>Reporte de Estudiantess</title>
+    <title>Reporte de Estudiantes</title>
 </head>
 <body>
 
