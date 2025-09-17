@@ -185,7 +185,7 @@ switch ($accion) {
 ?>
 </body>
 
-<div style="text-align: left; margin-top: 30px;">
+<div class="nav" style="text-align: left; margin-top: 30px;">
     <form action="PagPrincipal.php" method="get">
         <button type="submit">Pagina Principal</button>
     </form>
