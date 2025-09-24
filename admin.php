@@ -1,6 +1,12 @@
 <?php
 require 'ConnectDB.php';
 
+session_start();
+if (!isset($_SESSION['alumno'])) {
+    header("Location: login.php");
+    exit;
+}
+
 $accion = $_GET['accion'] ?? '';
 
 ?>

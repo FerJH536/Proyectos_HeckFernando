@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+if (!isset($_SESSION['alumno'])) {
+    header("Location: login.php");
+    exit;
+}
+
 require 'ConnectDB.php';
 
 $vista = $_GET['vista'] ?? 'inicio';
@@ -69,6 +75,7 @@ switch ($vista) {
     <form method="get"><input type="hidden" name="vista" value="materias"><button>Ver Materias</button></form>
     <form method="get"><input type="hidden" name="vista" value="notas"><button>Ver Notas</button></form>
     <form action="admin.php" method="get"><button type="submit">Administrar Datos</button></form>
+    <form action="logout.php" method="post" style="display:inline;"><button type="submit">Cerrar Sesión</button></form>
 </div>
 
 <h2><?= htmlspecialchars($titulo) ?></h2>
