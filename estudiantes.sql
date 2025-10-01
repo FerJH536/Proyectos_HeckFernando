@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `Carreras` (
   `IDCarrera` int NOT NULL,
   `Carrera` varchar(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Carreras`
@@ -52,7 +52,7 @@ CREATE TABLE `Estudiantes` (
   `Alumno` varchar(30) DEFAULT NULL,
   `Edad` int DEFAULT NULL,
   `IDCarrera` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Estudiantes`
@@ -72,7 +72,7 @@ CREATE TABLE `Materias` (
   `IDMateria` int NOT NULL,
   `Materia` varchar(30) DEFAULT NULL,
   `IDCarrera` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Materias`
@@ -96,7 +96,7 @@ CREATE TABLE `Notas` (
   `PrimerParcial` int DEFAULT NULL,
   `SegundoParcial` int DEFAULT NULL,
   `TercerParcial` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Notas`
@@ -116,7 +116,7 @@ CREATE TABLE `Usuarios` (
   `IDUsuario` int NOT NULL,
   `Alumno` char(30) DEFAULT NULL,
   `Password` char(30) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `Usuarios`
