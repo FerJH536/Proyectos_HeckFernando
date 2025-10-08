@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Productos</title>
+    <style>
+        /* ======== RESET ======== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background: #0b0f19;
+        color: #e0e6f0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px;
+    }
+
+    h2 {
+        font-size: 2rem;
+        color: #4da6ff;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    .stats {
+        background: #111827;
+        border: 1px solid #1e293b;
+        border-radius: 10px;
+        padding: 12px 20px;
+        margin-bottom: 30px;
+        font-size: 1rem;
+        color: #a8b3c9;
+        width: 100%;
+        max-width: 700px;
+        text-align: center;
+    }
+
+    .filtros {
+        background: #111827;
+        border: 1px solid #1e293b;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+        width: 100%;
+        max-width: 700px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    .filtros h3 {
+        color: #4da6ff;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .filtro-grupo {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filtro-grupo label {
+        margin-bottom: 5px;
+        color: #cbd5e1;
+        font-size: 0.9rem;
+    }
+
+    input[type="text"], input[type="number"], select {
+        padding: 8px 10px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #1e293b;
+        color: #e0e6f0;
+        transition: 0.3s;
+    }
+
+    input[type="text"]:focus, input[type="number"]:focus, select:focus {
+        outline: none;
+        border-color: #4da6ff;
+        background: #0f172a;
+    }
+
+    button {
+        background: #2563eb;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+        background: #1d4ed8;
+        transform: translateY(-2px);
+    }
+
+    .btn-limpiar {
+        background: #1e293b;
+        color: #93c5fd;
+        margin-left: 10px;
+        border: 1px solid #334155;
+    }
+
+    .btn-limpiar:hover {
+        background: #334155;
+    }
+
+    table {
+        width: 100%;
+        max-width: 900px;
+        border-collapse: collapse;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #111827;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    th, td {
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    th {
+        background: #1e293b;
+        color: #60a5fa;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+    }
+
+    tr:nth-child(even) {
+        background: #0f172a;
+    }
+
+    tr:hover {
+        background: #1e3a8a;
+        transition: 0.3s;
+    }
+
+    td {
+        color: #cbd5e1;
+    }
+    </style>
+</head>
+<body>
+    <h2>Sistema de Gestión de Productos</h2>
+    
+    <div class="stats">
+        Total de productos: <span id="totalProductos">0</span> | 
+        Productos filtrados: <span id="productosFiltrados">0</span> | 
+        Valor total stock: $<span id="valorTotal">0</span>
+    </div>
+    
+    <div class="filtros">
+        <h3>Filtros y Búsqueda</h3>
+        
+        <div class="filtro-grupo">
+            <label>Buscar:</label>
+            <input type="text" id="buscar" placeholder="Buscar por nombre...">
+        </div>
+        
+        <div class="filtro-grupo">
+            <label>Categoría:</label>
+            <select id="categoria">
+                <option value="todas">Todas las categorías</option>
+                <option value="Electrónica">Electrónica</option>
+                <option value="Ropa">Ropa</option>
+                <option value="Alimentos">Alimentos</option>
+                <option value="Hogar">Hogar</option>
+            </select>
+        </div>
+        
+        <div class="filtro-grupo">
+            <label>Stock mínimo:</label>
+            <input type="number" id="stockMinimo" value="0" min="0">
+        </div>
+        
+        <div class="filtro-grupo">
+            <label>Ordenar por:</label>
+            <select id="ordenar">
+                <option value="nombre_asc">Nombre (A-Z)</option>
+                <option value="nombre_desc">Nombre (Z-A)</option>
+                <option value="precio_asc">Precio (Menor a Mayor)</option>
+                <option value="precio_desc">Precio (Mayor a Menor)</option>
+                <option value="stock_asc">Stock (Menor a Mayor)</option>
+                <option value="stock_desc">Stock (Mayor a Mayor)</option>
+            </select>
+        </div>
+        
+        <button id="aplicarFiltros">Aplicar Filtros</button>
+        <button id="limpiarFiltros" class="btn-limpiar">Limpiar Filtros</button>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Valor Total</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoTabla">
+        </tbody>
+    </table>
+    
+    <script>
+        const productosOriginales = [
+            { id: 1, nombre: "Laptop Dell", categoria: "Electrónica", precio: 45000, stock: 5 },
+            { id: 2, nombre: "Mouse Logitech", categoria: "Electrónica", precio: 1500, stock: 25 },
+            { id: 3, nombre: "Teclado Mecánico", categoria: "Electrónica", precio: 8000, stock: 15 },
+            { id: 4, nombre: "Remera Nike", categoria: "Ropa", precio: 3500, stock: 50 },
+            { id: 5, nombre: "Pantalón Levis", categoria: "Ropa", precio: 12000, stock: 30 },
+            { id: 6, nombre: "Zapatillas Adidas", categoria: "Ropa", precio: 25000, stock: 20 },
+            { id: 7, nombre: "Arroz 1kg", categoria: "Alimentos", precio: 800, stock: 100 },
+            { id: 8, nombre: "Fideos", categoria: "Alimentos", precio: 600, stock: 150 },
+            { id: 9, nombre: "Aceite", categoria: "Alimentos", precio: 1200, stock: 80 },
+            { id: 10, nombre: "Lámpara LED", categoria: "Hogar", precio: 2500, stock: 40 },
+            { id: 11, nombre: "Silla Gamer", categoria: "Hogar", precio: 35000, stock: 8 },
+            { id: 12, nombre: "Monitor 24 pulgadas", categoria: "Electrónica", precio: 55000, stock: 3 }
+        ];
+
+        let productosFiltrados = [...productosOriginales];
+
+        // FUNCIÓN 1: Mostrar productos en la tabla
+        function mostrarProductos(productos) {
+            const cuerpoTabla = document.getElementById("cuerpoTabla");
+            cuerpoTabla.innerHTML = "";
+
+            if (productos.length === 0) {
+                cuerpoTabla.innerHTML = `<tr><td colspan="6">No se encontraron productos.</td></tr>`;
+            } else {
+                productos.forEach(p => {
+                    const fila = document.createElement("tr");
+                    fila.innerHTML = `
+                        <td>${p.id}</td>
+                        <td>${p.nombre}</td>
+                        <td>${p.categoria}</td>
+                        <td>$${p.precio.toLocaleString()}</td>
+                        <td>${p.stock}</td>
+                        <td>$${(p.precio * p.stock).toLocaleString()}</td>
+                    `;
+                    cuerpoTabla.appendChild(fila);
+                });
+            }
+
+            actualizarEstadisticas(productos);
+        }
+
+        // FUNCIÓN 2: Actualizar estadísticas
+        function actualizarEstadisticas(productos) {
+            document.getElementById("totalProductos").textContent = productosOriginales.length;
+            document.getElementById("productosFiltrados").textContent = productos.length;
+            
+            const valorTotal = productos.reduce((acc, p) => acc + (p.precio * p.stock), 0);
+            document.getElementById("valorTotal").textContent = valorTotal.toLocaleString();
+        }
+
+        // FUNCIÓN 3: Aplicar filtros
+        function aplicarFiltros() {
+            const textoBuscar = document.getElementById("buscar").value.toLowerCase();
+            const categoria = document.getElementById("categoria").value;
+            const stockMinimo = parseInt(document.getElementById("stockMinimo").value) || 0;
+
+            productosFiltrados = productosOriginales.filter(p => {
+                const coincideTexto = p.nombre.toLowerCase().includes(textoBuscar);
+                const coincideCategoria = categoria === "todas" || p.categoria === categoria;
+                const coincideStock = p.stock >= stockMinimo;
+                return coincideTexto && coincideCategoria && coincideStock;
+            });
+
+            ordenarProductos();
+        }
+
+        // FUNCIÓN 4: Ordenar productos
+        function ordenarProductos() {
+            const criterio = document.getElementById("ordenar").value;
+
+            productosFiltrados.sort((a, b) => {
+                switch (criterio) {
+                    case "nombre_asc": return a.nombre.localeCompare(b.nombre);
+                    case "nombre_desc": return b.nombre.localeCompare(a.nombre);
+                    case "precio_asc": return a.precio - b.precio;
+                    case "precio_desc": return b.precio - a.precio;
+                    case "stock_asc": return a.stock - b.stock;
+                    case "stock_desc": return b.stock - a.stock;
+                    default: return 0;
+                }
+            });
+
+            mostrarProductos(productosFiltrados);
+        }
+
+        // FUNCIÓN 5: Limpiar filtros
+        function limpiarFiltros() {
+            document.getElementById("buscar").value = "";
+            document.getElementById("categoria").value = "todas";
+            document.getElementById("stockMinimo").value = 0;
+            document.getElementById("ordenar").value = "nombre_asc";
+
+            productosFiltrados = [...productosOriginales];
+            mostrarProductos(productosFiltrados);
+        }
+
+        // EVENT LISTENERS
+        document.getElementById("aplicarFiltros").addEventListener("click", aplicarFiltros);
+        document.getElementById("limpiarFiltros").addEventListener("click", limpiarFiltros);
+        document.getElementById("buscar").addEventListener("input", aplicarFiltros);
+
+        // INICIALIZACIÓN
+        mostrarProductos(productosFiltrados);
+    </script>
+</body>
+</html>
